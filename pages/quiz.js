@@ -27,6 +27,7 @@ function QuestionWidget({
   questionIndex,
   onSubmit,
 }) {
+  const [selectedAlternative, setSelectedALternative] = React.useState(undefined);
   const questionId = `question__${questionIndex}`;
   return (
     <Widget>
@@ -65,6 +66,7 @@ function QuestionWidget({
             return (
               <Widget.Topic
                 as="label"
+                key={alternativeId}
                 htmlFor={alternativeId}
               >
                 <input
