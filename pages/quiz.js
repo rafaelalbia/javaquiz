@@ -117,7 +117,7 @@ function QuestionWidget({
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
-            const selectedAlternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
@@ -128,6 +128,7 @@ function QuestionWidget({
                 data-status={isQuestionSubmited && alternativeStatus}
               >
                 <input
+                  style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
