@@ -19,6 +19,7 @@ function ResultWidget({ results }) {
         <p>
           You got it right
           {' '}
+          {/*
           {results.reduce((currentSum, currentResult) => {
             const isRight = currentResult === true;
             if (isRight) {
@@ -26,6 +27,8 @@ function ResultWidget({ results }) {
             }
             return currentSum;
           }, 0)}
+          */}
+          {results.filter((x) => x).length}
           {' '}
           questions
         </p>
@@ -65,6 +68,7 @@ function QuestionWidget({
   questionsTotal,
   questionIndex,
   onSubmit,
+  addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
@@ -103,6 +107,7 @@ function QuestionWidget({
             submitEvent.preventDefault();
             setIsQuestionSubmited(true);
             setTimeout(() => {
+              addResult(isCorrect);
               onSubmit();
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
@@ -145,17 +150,24 @@ const screenStates = {
 };
 
 export default function QuizPage() {
-  const [screenState, setScreenState] = React.useState(screenStates.RESULT);
-  const [results, setResults] = React.useState([true, false, true]);
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
+  const [results, setResults] = React.useState([]);
   const questionsTotal = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
+  function addResult(result) {
+    setResults([
+      ...results,
+      result,
+    ]);
+  }
+
   React.useEffect(() => {
     setTimeout(() => {
-      // setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+      setScreenState(screenStates.QUIZ);
+    }, 1 * 8000);
   }, []);
 
   function handleSubmitQuiz() {
@@ -178,6 +190,7 @@ export default function QuizPage() {
             questionsTotal={questionsTotal}
             questionIndex={questionIndex}
             onSubmit={handleSubmitQuiz}
+            addResult={addResult}
           />
         )}
 
