@@ -1,5 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import styled from 'styled-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -57,12 +57,24 @@ export default function Home() {
           <Widget.Content>
             <h1>See another Quizes</h1>
 
-            <p>Lorem inpsum dolor sit amet...</p>
+            <ul>
+              {db.external.map((externalLink) => {
+                const [projectName, githubUser] = externalLink.replace(/\//g, '').replace('https:', '').replace('.vercel.app', '').split('.');
+
+                return (
+                  <li key={externalLink}>
+                    <Widget.Topic href={externalLink}>
+                      {`${githubUser}/${projectName}`}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Widget.Content>
         </Widget>
         <Footer />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/rafaelalbia" />
+      <GitHubCorner projectUrl="https://github.com/rafaelalbia/javaquiz" />
     </QuizBackground>
   );
 }
