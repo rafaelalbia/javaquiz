@@ -9,7 +9,7 @@ export default function SeeAnotherQuizes() {
   );
 }
 
-export async function getServerSIdeProps(context) {
+export async function getServerSideProps(context) {
   console.log('Next Informations: ', context);
   return {
     props: {},
