@@ -63,7 +63,7 @@ export default function Home() {
 
                 return (
                   <li key={externalLink}>
-                    <Widget.Topic href={externalLink}>
+                    <Widget.Topic href={`/quiz/${projectName}___${githubUser}`}>
                       {`${githubUser}/${projectName}`}
                     </Widget.Topic>
                   </li>
