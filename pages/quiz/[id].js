@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 
         throw new Error('Failure to get data');
       })
-      .then((answerInvertedInfo) => answerInvertedInfo)
+      .then((answerInvertedInfo) => answerInvertedInfo);
       // .catch((error) => {
       //   console.log(error);
       // });

@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Head from 'next/head';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
+import Link from '../src/components/Link';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
@@ -31,7 +33,9 @@ export default function Home() {
           <title>JavaQuiz</title>
         </Head>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+        >
           <Widget.Header>
             <h1>JavaQuiz</h1>
           </Widget.Header>
@@ -63,7 +67,10 @@ export default function Home() {
 
                 return (
                   <li key={externalLink}>
-                    <Widget.Topic href={`/quiz/${projectName}___${githubUser}`}>
+                    <Widget.Topic
+                      as={Link}
+                      href={`/quiz/${projectName}___${githubUser}`}
+                    >
                       {`${githubUser}/${projectName}`}
                     </Widget.Topic>
                   </li>
