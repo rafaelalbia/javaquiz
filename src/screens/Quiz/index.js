@@ -57,10 +57,6 @@ function LoadingWidget() {
       <Widget.Header>
         Loading...
       </Widget.Header>
-
-      <Widget.Content>
-        [Loading Question]
-      </Widget.Content>
     </Widget>
   );
 }

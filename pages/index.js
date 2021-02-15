@@ -30,6 +30,8 @@ export default function Home() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <Head>
+          <meta property="og:title" content={db.title} />
+          <meta property="og:image" content={db.bg} />
           <title>JavaQuiz</title>
         </Head>
         <QuizLogo />
